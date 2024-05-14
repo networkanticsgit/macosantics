@@ -1,14 +1,16 @@
 #!/bin/bash
 # Purpose: List FFPNs longer than OneDrive limit and save to CSV
-#find ~/Documents/test -type f -exec bash -c 'echo -n "{}" | wc -c && echo " {}"' \; | sort -n
+# OneDrive limit in Finder on macOS is 400 character
+# OneDrive limit in File Explorer on Windows OS is 255 characters
 
-folder_path=~/Documents/test
+folder_path=/Users/lesnikdva/Documents
 csv_file=/private/tmp/ListOfFilesAndFoldersWithFFPNLongerThanODLimit.csv
 max_length=400
 
 # Check if folder exists
 if [ ! -d "$folder_path" ]; then
-    echo "Error: Folder does not exist."
+    echo "Error: Folder ( $folder_path ) does not exist."
+    echo "Error: Folder ( $folder_path ) does not exist." >> "$csv_file"
     exit 1
 fi
 
